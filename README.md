@@ -152,8 +152,8 @@ other options (https://github.com/mikolmogorov/Flye)
 #SBATCH --cpus-per-task=16
 #SBATCH --mem=48G
 #SBATCH --array=1
-#SBATCH --output=slurm_jobs/autocycler_basecaller_%j.out
-#SBATCH --error=slurm_jobs/autocycler_basecaller_%j.err
+#SBATCH --output=slurm_jobs/flye_basecaller_%j.out
+#SBATCH --error=slurm_jobs/flye_basecaller_%j.err
 export PATH="/projappl/project_2021928/autocycler_tykky/bin:$PATH"
 
 mkdir -p 09_flye 09_flye/BC01 && cd 09_flye/BC01
