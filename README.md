@@ -1,6 +1,7 @@
 # Nanopore bacterial genomics
 ##  1. Basecall only: keep barcodes on the reads, don't look for them yet
 For this we will use dorado (https://github.com/nanoporetech/dorado)
+Log in ito the gpu node always to use dorado. dorado only works with gpus
 ```bash
 RAW_DATA_PATH=/PATH/TO/RUN_SEQUENCING/POD5
 ```
@@ -31,21 +32,23 @@ dorado basecaller sup ${RAW_DATA_PATH} --no-trim --device cuda:all --emit-fastq 
 ```bash
 sbatch 01_dorado.sh
 ```
-
-
-
-
-
-
-
-
+## 2. Demux: find the barcodes, trim them, and split into one file per barcode
+### Demux using dorado
+```bash
+dorado demux --kit-name SQK-RBK114-24 \
+    --output-dir 01_dorado/demux/ \
+    --emit-fastq \
+    01_dorado/01_calls.bam
+```
+### Demux using Barbell (https://github.com/rickbeeloo/barbell)
+``bash
 export PATH="/projappl/project_2021928/barbell_tykky/bin:$PATH"
 mkdir -p 02_barbell
-#barbell kit -k SQK-RBK114-24 \
-#    -i 01_dorado/01_calls.fastq \
-#    -o 02_barbell/ \
-#    --maximize
-
+barbell kit -k SQK-RBK114-24 \
+    -i 01_dorado/01_calls.fastq \
+    -o 02_barbell/ \
+    --maximize
+```
 
 
 #export PATH="/projappl/project_2021928/qc_assembly_tykky/bin:$PATH"
