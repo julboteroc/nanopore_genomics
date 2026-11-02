@@ -50,14 +50,14 @@ barbell kit -k SQK-RBK114-24 \
     --maximize
 ```
 
-
+## QC fastq files
+``bash
 #export PATH="/projappl/project_2021928/qc_assembly_tykky/bin:$PATH"
-
-
 mkdir -p 03_nanoplot
+for fq in 02_barbell/*.fastq*; do
+    name=$(basename "$fq")
+    echo $name
+    NanoPlot -o 03_nanoplot/$name -f png --fastq "$fq" -t 4
+done
+```
 
-#for fq in 02_barbell/*.fastq*; do
-#    name=$(basename "$fq")
-#    echo $name
-#    NanoPlot -o 03_nanoplot/$name -f png --fastq "$fq" -t 4
-#done
