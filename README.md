@@ -155,12 +155,8 @@ other options (https://github.com/mikolmogorov/Flye)
 #SBATCH --error=slurm_jobs/autocycler_basecaller_%j.err
 export PATH="/projappl/project_2021928/autocycler_tykky/bin:$PATH"
 
+mkdir -p 09_autocycler 09_autocycler/BC01 && cd 09_autocycler/BC01
 
-reads=\$(realpath \$(ls 06_chopper/*.fastq.gz | sed -n "\${SLURM_ARRAY_TASK_ID}p"))
-name=\$(basename \$reads | cut -d. -f1)
-
-mkdir -p 09_autocycler 09_autocycler/\$name && cd 09_autocycler/\$name
-
-autocycler_full.sh \$reads 4 4
+autocycler_full.sh full/path/to/06_chopper/BC01_fastq.gz 4 4
 ```
 
