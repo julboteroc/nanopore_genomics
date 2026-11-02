@@ -141,7 +141,7 @@ done
 ```
 
 ## 6. Assemble the genomes
-For this, we use autocycler (https://github.com/rrwick/Autocycler)
+For this, we use autocycler (https://github.com/rrwick/Autocycler).
 other options (https://github.com/mikolmogorov/Flye)
 ```bash
 #!/bin/bash
