@@ -143,6 +143,7 @@ done
 ## 6. Assemble the genomes
 For this, we use autocycler (https://github.com/rrwick/Autocycler).
 other options (https://github.com/mikolmogorov/Flye)
+
 ```bash
 #!/bin/bash
 #SBATCH --account=project_2007691
@@ -155,8 +156,11 @@ other options (https://github.com/mikolmogorov/Flye)
 #SBATCH --error=slurm_jobs/autocycler_basecaller_%j.err
 export PATH="/projappl/project_2021928/autocycler_tykky/bin:$PATH"
 
-mkdir -p 09_autocycler 09_autocycler/BC01 && cd 09_autocycler/BC01
+mkdir -p 09_flye 09_flye/BC01 && cd 09_flye/BC01
 
-autocycler_full.sh full/path/to/06_chopper/BC01_fastq.gz 4 4
+flye \
+    --nano-raw # your trimmed reads here \
+    --threads 6 \
+    --out-dir flye_out
 ```
 
